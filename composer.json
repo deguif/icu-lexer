@@ -1,0 +1,24 @@
+{
+  "name": "deguif/icu-lexer",
+  "type": "library",
+  "description": "A lexer for ICU messages",
+  "keywords": [
+    "icu"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "François-Xavier de Guillebon"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "symfony/polyfill-mbstring": "^1.3",
+    "symfony/polyfill-ctype": "^1.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Deguif\\Icu\\": "src/"
+    }
+  }
+}

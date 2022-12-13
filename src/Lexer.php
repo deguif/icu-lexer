@@ -7,14 +7,12 @@ class Lexer
     private $message = '';
     private $messageLength = 0;
     private $tokens = [];
-    private $needsAutoQuoting = false;
 
     public function tokenize(string $message): TokenStream
     {
         $this->message = $message;
         $this->messageLength = \mb_strlen($message);
         $this->tokens = [];
-        $this->needsAutoQuoting = false;
 
         $this->parse(0, 0, 0, Token::ARG_TYPE_NONE);
 
@@ -237,10 +235,8 @@ class Lexer
         $index = $this->skipIdentifier($index);
         $number = $this->parseArgNumber(\mb_substr($this->message, $nameIndex, $index - $nameIndex));
         if (\is_int($number)) {
-            $this->hasArgNumbers = true;
             $this->pushToken(Token::TYPE_ARG_NUMBER, $nameIndex, $index - $nameIndex, $number);
         } elseif (\is_string($number)) {
-            $this->hasArgNames = true;
             $this->pushToken(Token::TYPE_ARG_NAME, $nameIndex, $index - $nameIndex, $number);
         } else {
             throw new \RuntimeException('Pattern syntax error.');
